@@ -2,10 +2,10 @@ import { Link } from "react-router-dom";
 
 export default function Header() {
   return (
-    <header className="body-font text-gray-600">
+    <header className="body-font text-white">
       <div className=" mx-auto flex flex-col flex-wrap items-center p-5 md:flex-row">
         <Link to={"/"}>
-          <a className="title-font mb-4 flex items-center font-medium text-gray-900 md:mb-0">
+          <a className="title-font mb-4 flex items-center font-medium text-white md:mb-0">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -21,18 +21,18 @@ export default function Header() {
               />
             </svg>
 
-            <span className="ml-3 text-xl">E-Commerce App</span>
+            <span className="ml-3 text-xl">amazon but i'm retarded</span>
           </a>
         </Link>
         <nav className="flex flex-wrap items-center justify-center text-base md:mr-auto	md:ml-4 md:border-l md:border-gray-400 md:py-1 md:pl-4">
-          <a className="mr-5 hover:text-gray-900">First Link</a>
-          <a className="mr-5 hover:text-gray-900">Second Link</a>
-          <a className="mr-5 hover:text-gray-900">Third Link</a>
-          <a className="mr-5 hover:text-gray-900">Fourth Link</a>
+          {/* <a className="mr-5 hover:text-gray-400">First Link</a>
+          <a className="mr-5 hover:text-gray-400">Second Link</a>
+          <a className="mr-5 hover:text-gray-400">Third Link</a>
+          <a className="mr-5 hover:text-gray-400">Fourth Link</a> */}
         </nav>
-        <section className="inline-flex">
+        <section className="inline-flex text-white">
           <section className="pr-2">
-            <button className="mt-4 inline-flex items-center rounded border-0 bg-gray-100 py-1 px-3 text-base hover:bg-gray-200 focus:outline-none md:mt-0">
+            <button className="mt-4 inline-flex items-center rounded border-0 bg-zinc-400/50 py-1 px-3 text-base hover:bg-gray-400 focus:outline-none md:mt-0">
               Cart
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -51,7 +51,7 @@ export default function Header() {
             </button>
           </section>
           <section className="pr-2">
-            <button className="mt-4 inline-flex items-center rounded border-0 bg-gray-100 py-1 px-3 text-base hover:bg-gray-200 focus:outline-none md:mt-0">
+            <button className="mt-4 inline-flex items-center rounded border-0 bg-zinc-400/50 py-1 px-3 text-base hover:bg-gray-400 focus:outline-none md:mt-0">
               Log Out
               <svg
                 fill="none"
