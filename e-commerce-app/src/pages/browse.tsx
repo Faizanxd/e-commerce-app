@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+
 import { fetchRequest, productInfo } from "../common/api";
+
 import { ENDPOINTS } from "../common/enpoints";
 
 export default function Browse() {

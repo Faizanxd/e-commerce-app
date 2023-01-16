@@ -1,6 +1,13 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../common/auth";
 
 export default function Header() {
+  const navigate = useNavigate();
+  const { signOut } = useAuth();
+  async function signOutofApp() {
+    await signOut();
+    navigate("/login");
+  }
   return (
     <header className="body-font text-white">
       <div className=" mx-auto flex flex-col flex-wrap items-center p-5 md:flex-row">
@@ -25,10 +32,10 @@ export default function Header() {
           </a>
         </Link>
         <nav className="flex flex-wrap items-center justify-center text-base md:mr-auto	md:ml-4 md:border-l md:border-gray-400 md:py-1 md:pl-4">
-          {/* <a className="mr-5 hover:text-gray-400">First Link</a>
+          <a className="mr-5 hover:text-gray-400">First Link</a>
           <a className="mr-5 hover:text-gray-400">Second Link</a>
           <a className="mr-5 hover:text-gray-400">Third Link</a>
-          <a className="mr-5 hover:text-gray-400">Fourth Link</a> */}
+          <a className="mr-5 hover:text-gray-400">Fourth Link</a>
         </nav>
         <section className="inline-flex text-white">
           <section className="pr-2">
@@ -51,7 +58,10 @@ export default function Header() {
             </button>
           </section>
           <section className="pr-2">
-            <button className="mt-4 inline-flex items-center rounded border-0 bg-zinc-400/50 py-1 px-3 text-base hover:bg-gray-400 focus:outline-none md:mt-0">
+            <button
+              className="mt-4 inline-flex items-center rounded border-0 bg-zinc-400/50 py-1 px-3 text-base hover:bg-gray-400 focus:outline-none md:mt-0"
+              onClick={signOutofApp}
+            >
               Log Out
               <svg
                 fill="none"
