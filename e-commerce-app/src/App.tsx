@@ -49,8 +49,7 @@ function AppRouter() {
             </ProtectedRoute>
           }
         >
-          <Route index element={<div> / page</div>} />
-          <Route path="browse" element={<Layout />}>
+          <Route path="/" element={<Layout />}>
             <Route index element={<Browse />} />
           </Route>
         </Route>

@@ -1,6 +1,6 @@
 import { Transition } from "@headlessui/react";
 import { Dialog } from "@headlessui/react";
-import React, { useState, Fragment } from "react";
+import { Fragment } from "react";
 
 type ModalProps = {
   title: string;
@@ -21,7 +21,6 @@ export default function Modal({
   category,
   id,
   isOpen,
-
   setIsOpen,
 }: ModalProps) {
   function closeModal() {

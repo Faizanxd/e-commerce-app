@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-
 import { fetchCardData, fetchRequest, productInfo } from "../common/api";
-
 import { ENDPOINTS } from "../common/enpoints";
 import Modal from "../components/modal";
 
 export default function Browse() {
   let [isOpen, setIsOpen] = useState(true);
+  const [cards, setCards] = useState<productInfo[]>();
   const [products, setProducts] = useState<productInfo>();
+
   async function fetchProductData() {
     const products = await fetchRequest<productInfo>(ENDPOINTS.ALL_PRODUCTS);
     setProducts(products);
@@ -26,8 +26,12 @@ export default function Browse() {
       ENDPOINTS.ALL_PRODUCTS,
       value
     );
-    return data;
+
+    setCards([data]);
+    console.log(data);
   }
+
+  console.log(cards);
   return (
     <>
       <section className="mt-8">
@@ -63,7 +67,9 @@ export default function Browse() {
                     </div>
                     <div className="flex">
                       <div>
-                        <button onClick={openModal}>
+                        <button
+                          onClick={() => cardData(product.id).then(openModal)}
+                        >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
@@ -104,20 +110,15 @@ export default function Browse() {
                   </div>
                 </div>
               </div>
+              <div>
+                {cards &&
+                  cards.map((card) => {
+                    return (
+                      <Modal isOpen={isOpen} {...card} setIsOpen={setIsOpen} />
+                    );
+                  })}
+              </div>
             </section>
-          );
-        })}
-      </section>
-
-      <section>
-        {products?.map((product) => {
-          return (
-            <Modal
-              key={product.id}
-              isOpen={isOpen}
-              setIsOpen={setIsOpen}
-              {...product}
-            />
           );
         })}
       </section>
