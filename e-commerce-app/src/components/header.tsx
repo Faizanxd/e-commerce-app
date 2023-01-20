@@ -1,5 +1,8 @@
+import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../common/auth";
+import { RootState } from "../store";
+import { getItemsCount } from "../utils";
 
 export default function Header() {
   const navigate = useNavigate();
@@ -8,6 +11,10 @@ export default function Header() {
     await signOut();
     navigate("/login");
   }
+  const cartItems = useSelector((state: RootState) => state.cart?.value);
+  const count = getItemsCount(cartItems);
+  const countIf = count > 0 ? count : null;
+
   return (
     <header className="body-font text-white">
       <div className=" mx-auto flex flex-col flex-wrap items-center p-5 md:flex-row">
@@ -19,7 +26,7 @@ export default function Header() {
               viewBox="0 0 24 24"
               stroke-width="1.5"
               stroke="currentColor"
-              className="h-10 w-10 rounded-full bg-yellow-500 p-2 text-white"
+              className="h-10 w-10 rounded-full bg-indigo-500 p-2 text-white"
             >
               <path
                 stroke-linecap="round"
@@ -39,8 +46,11 @@ export default function Header() {
         </nav>
         <section className="inline-flex text-white">
           <section className="pr-2">
-            <button className="mt-4 inline-flex items-center rounded border-0 bg-zinc-400/50 py-1 px-3 text-base hover:bg-gray-400 focus:outline-none md:mt-0">
-              Cart
+            <button
+              className="mt-4 inline-flex items-center rounded border-0 bg-zinc-400/50 py-1 px-3 text-base hover:bg-gray-400 focus:outline-none md:mt-0"
+              onClick={() => navigate("/cart")}
+            >
+              {countIf ?? "Cart"}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"

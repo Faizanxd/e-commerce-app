@@ -11,8 +11,11 @@ import { AuthProvider, useAuth } from "./common/auth";
 import Layout from "./components/layout";
 import Loader from "./components/loader";
 import Browse from "./pages/browse";
+import Cart from "./pages/cart";
 import Login from "./pages/signIn";
 import SignUp from "./pages/signUp";
+import { Provider } from "react-redux";
+import { store } from "./store";
 
 function ProtectedRoute({ children }: { children: React.ReactElement }) {
   const { user, loading } = useAuth();
@@ -52,6 +55,9 @@ function AppRouter() {
           <Route path="/" element={<Layout />}>
             <Route index element={<Browse />} />
           </Route>
+          <Route path="/cart" element={<Layout />}>
+            <Route index element={<Cart />} />
+          </Route>
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/signUp" element={<SignUp />} />
@@ -64,7 +70,9 @@ function AppRouter() {
 export default function App() {
   return (
     <AuthProvider>
-      <AppRouter />
+      <Provider store={store}>
+        <AppRouter />
+      </Provider>
     </AuthProvider>
   );
 }

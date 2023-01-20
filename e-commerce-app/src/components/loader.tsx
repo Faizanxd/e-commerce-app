@@ -2,7 +2,7 @@ export default function Loader() {
   return (
     <section className="absolute grid h-screen w-screen place-items-center">
       <svg
-        className="h-1/5 w-1/5 animate-spin text-blue-500"
+        className="h-[10%] w-[10%] animate-spin text-indigo-500"
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"

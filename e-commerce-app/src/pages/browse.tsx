@@ -1,12 +1,19 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { fetchCardData, fetchRequest, productInfo } from "../common/api";
 import { ENDPOINTS } from "../common/enpoints";
+import { cart } from "../common/types";
+import Loader from "../components/loader";
 import Modal from "../components/modal";
+import { addToCart } from "../redux/cart-slice";
 
 export default function Browse() {
   let [isOpen, setIsOpen] = useState(true);
   const [cards, setCards] = useState<productInfo[]>();
   const [products, setProducts] = useState<productInfo>();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   async function fetchProductData() {
     const products = await fetchRequest<productInfo>(ENDPOINTS.ALL_PRODUCTS);
@@ -28,11 +35,13 @@ export default function Browse() {
     );
 
     setCards([data]);
-    console.log(data);
   }
 
-  console.log(cards);
-  return (
+  function addProductToCart(product: typeof products) {
+    dispatch(addToCart({ product, quantity: 1 }));
+  }
+
+  return products ? (
     <>
       <section className="mt-8">
         {products?.map((product) => {
@@ -61,7 +70,10 @@ export default function Browse() {
                       <p className="mt-1 font-extrabold">{product.price}$</p>
                     </div>
                     <div className="">
-                      <button className="ml-auto flex rounded border-0 bg-indigo-500 py-2 px-6 text-white hover:bg-indigo-600 focus:outline-none">
+                      <button
+                        className="ml-auto flex rounded border-0 bg-indigo-500 py-2 px-6 text-white hover:bg-indigo-600 focus:outline-none"
+                        onClick={() => addProductToCart(product as any)}
+                      >
                         Add to Cart
                       </button>
                     </div>
@@ -114,7 +126,17 @@ export default function Browse() {
                 {cards &&
                   cards.map((card) => {
                     return (
-                      <Modal isOpen={isOpen} {...card} setIsOpen={setIsOpen} />
+                      <Modal
+                        title={""}
+                        description={""}
+                        image={""}
+                        price={0}
+                        category={""}
+                        id={0}
+                        isOpen={isOpen}
+                        {...card}
+                        setIsOpen={setIsOpen}
+                      />
                     );
                   })}
               </div>
@@ -123,5 +145,7 @@ export default function Browse() {
         })}
       </section>
     </>
+  ) : (
+    <Loader />
   );
 }
