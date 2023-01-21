@@ -25,7 +25,7 @@ export default function signUp() {
   return (
     <>
       <div className="flex min-h-screen w-screen flex-col items-center justify-center   ">
-        <div className="xs:w-full h-screen w-full bg-white px-8 py-8 shadow-none sm:h-auto sm:w-8/12 sm:px-12 sm:shadow-lg md:w-7/12 lg:w-7/12 xl:w-2/6">
+        <div className="xs:w-full h-screen w-full bg-white px-8 py-8 tracking-widest shadow-none sm:h-auto sm:w-8/12 sm:px-12 sm:shadow-lg md:w-7/12 lg:w-7/12 xl:w-2/6">
           <div className="w-full p-4 text-center text-3xl font-bold text-black">
             SIGN UP
           </div>

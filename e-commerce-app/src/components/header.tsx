@@ -47,7 +47,9 @@ export default function Header() {
         <section className="inline-flex text-white">
           <section className="pr-2">
             <button
-              className="mt-4 inline-flex items-center rounded border-0 bg-zinc-400/50 py-1 px-3 text-base hover:bg-gray-400 focus:outline-none md:mt-0"
+              className={`mt-4 inline-flex items-center rounded border-0 bg-zinc-400/50 py-1 px-3 text-base hover:bg-gray-400 focus:outline-none md:mt-0  ${
+                countIf ? "bg-white font-extrabold text-indigo-500" : ""
+              }`}
               onClick={() => navigate("/cart")}
             >
               {countIf ?? "Cart"}

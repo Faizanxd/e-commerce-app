@@ -39,6 +39,7 @@ export default function Browse() {
 
   function addProductToCart(product: typeof products) {
     dispatch(addToCart({ product, quantity: 1 }));
+    navigate("/cart");
   }
 
   return products ? (

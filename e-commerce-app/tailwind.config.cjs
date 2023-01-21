@@ -10,6 +10,9 @@ module.exports = {
         dark: "hsl(0deg, 0%, 8%)",
         netflixRed : "#e50a14"
       },
+      fontFamily: {
+        Poppins: ["Poppins", "sans-serif"],
+       },
     },
   },
   plugins: [

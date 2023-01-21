@@ -69,10 +69,12 @@ function AppRouter() {
 
 export default function App() {
   return (
-    <AuthProvider>
-      <Provider store={store}>
-        <AppRouter />
-      </Provider>
-    </AuthProvider>
+    <div className="font-Poppins">
+      <AuthProvider>
+        <Provider store={store}>
+          <AppRouter />
+        </Provider>
+      </AuthProvider>
+    </div>
   );
 }
