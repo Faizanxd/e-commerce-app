@@ -17,7 +17,7 @@ export default function Header() {
 
   return (
     <header className="body-font text-white">
-      <div className=" mx-auto flex flex-col flex-wrap items-center p-5 md:flex-row">
+      <div className=" mx-auto flex flex-col flex-wrap items-center justify-between p-5 md:flex-row">
         <Link to={"/"}>
           <a className="title-font mb-4 flex items-center font-medium text-white md:mb-0">
             <svg
@@ -38,12 +38,7 @@ export default function Header() {
             <span className="ml-3 text-xl">amazon but i'm retarded</span>
           </a>
         </Link>
-        <nav className="flex flex-wrap items-center justify-center text-base md:mr-auto	md:ml-4 md:border-l md:border-gray-400 md:py-1 md:pl-4">
-          <a className="mr-5 hover:text-gray-400">First Link</a>
-          <a className="mr-5 hover:text-gray-400">Second Link</a>
-          <a className="mr-5 hover:text-gray-400">Third Link</a>
-          <a className="mr-5 hover:text-gray-400">Fourth Link</a>
-        </nav>
+
         <section className="inline-flex text-white">
           <section className="pr-2">
             <button

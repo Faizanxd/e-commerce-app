@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { fetchCardData, fetchRequest, productInfo } from "../common/api";
@@ -7,6 +8,7 @@ import { cart } from "../common/types";
 import Loader from "../components/loader";
 import Modal from "../components/modal";
 import { addToCart } from "../redux/cart-slice";
+import { RootState } from "../store";
 
 export default function Browse() {
   let [isOpen, setIsOpen] = useState(true);
@@ -14,10 +16,24 @@ export default function Browse() {
   const [products, setProducts] = useState<productInfo>();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const cart = useSelector((state: RootState) => state.cart?.value);
+  const disableCheckout = () => {
+    const checkoutButton = document.querySelector("button");
+    if (cart.length === 0) {
+      checkoutButton?.classList.add("cursor-not-allowed");
+      checkoutButton?.classList.add("opacity-50");
+      checkoutButton?.classList.add("pointer-events-none");
+    } else {
+      checkoutButton?.classList.remove("cursor-not-allowed");
+      checkoutButton?.classList.remove("opacity-50");
+      checkoutButton?.classList.remove("pointer-events-none");
+    }
+  };
 
   async function fetchProductData() {
     const products = await fetchRequest<productInfo>(ENDPOINTS.ALL_PRODUCTS);
     setProducts(products);
+    disableCheckout();
   }
 
   function openModal() {
@@ -68,7 +84,9 @@ export default function Browse() {
                       <h2 className="title-font text-lg font-medium text-white line-clamp-1">
                         {product.title}
                       </h2>
-                      <p className="mt-1 font-extrabold">{product.price}$</p>
+                      <p className="mt-1 font-extrabold tracking-widest">
+                        {product.price}$
+                      </p>
                     </div>
                     <div className="">
                       <button
