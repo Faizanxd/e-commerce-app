@@ -18,6 +18,9 @@ export default function signUp() {
       email: HTMLInputElement;
       password: HTMLInputElement;
     };
+    if (password.value.length < 8) {
+      alert("Password must be greater than 8 characters");
+    }
 
     event.preventDefault();
     await signUp(email.value, password.value);

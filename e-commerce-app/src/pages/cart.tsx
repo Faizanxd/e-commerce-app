@@ -1,13 +1,12 @@
-import { iteratorSymbol } from "immer/dist/internal";
-import { HTMLInputTypeAttribute, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { addToCart } from "../redux/cart-slice";
+import { addToCart, removeFromCart } from "../redux/cart-slice";
 import { RootState } from "../store";
 
 export default function Cart() {
   const cart = useSelector((state: RootState) => state.cart?.value);
+
   const getTotal = () => {
     const total = cart
       .reduce((acc, item) => acc + item.product.price * item.quantity, 0)
@@ -20,9 +19,9 @@ export default function Cart() {
   function handleQuantityChange(e, { product, quantity }) {
     const { value } = e.target;
     if (value < quantity) {
-      return;
+      dispatch(removeFromCart({ product }));
     }
-    dispatch(addToCart({ product, quantity: Number(value) }));
+    dispatch(addToCart({ product }));
   }
 
   return cart.length === 0 ? (
@@ -93,7 +92,12 @@ export default function Cart() {
                       />
                     </form>
                   </div>
-                  <button className="ml-4  rounded-sm  bg-gradient-to-r from-red-500 to-orange-500 p-2 text-white hover:from-orange-500 hover:to-red-500">
+                  <button
+                    className="ml-4  rounded-sm  bg-gradient-to-r from-red-500 to-orange-500 p-2 text-white hover:from-orange-500 hover:to-red-500"
+                    onClick={() => {
+                      dispatch(removeFromCart({ product }));
+                    }}
+                  >
                     Remove
                   </button>
                 </li>
@@ -110,7 +114,10 @@ export default function Cart() {
 
         <div className=" p-4">
           <div className="flex justify-end">
-            <button className="rounded-sm  bg-blue-500 bg-gradient-to-r from-indigo-500 to-blue-500 p-2 text-white transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 hover:from-red-500 hover:to-indigo-500">
+            <button
+              onClick={() => navigate("/checkout")}
+              className="rounded-sm  bg-blue-500 bg-gradient-to-r from-indigo-500 to-blue-500 p-2 text-white transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 hover:from-red-500 hover:to-indigo-500"
+            >
               Checkout
             </button>
           </div>

@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { fetchCardData, fetchRequest, productInfo } from "../common/api";
+import { fetchCardData, fetchRequest } from "../common/api";
+import { productInfo } from "../common/types";
 import { ENDPOINTS } from "../common/enpoints";
-import { cart } from "../common/types";
+
 import Loader from "../components/loader";
 import Modal from "../components/modal";
 import { addToCart } from "../redux/cart-slice";
@@ -53,7 +54,7 @@ export default function Browse() {
     setCards([data]);
   }
 
-  function addProductToCart(product: typeof products) {
+  function addProductToCart(product: productInfo) {
     dispatch(addToCart({ product, quantity: 1 }));
     navigate("/cart");
   }
@@ -91,7 +92,7 @@ export default function Browse() {
                     <div className="">
                       <button
                         className="ml-auto flex rounded border-0 bg-indigo-500 py-2 px-6 text-white hover:bg-indigo-600 focus:outline-none"
-                        onClick={() => addProductToCart(product as any)}
+                        onClick={() => addProductToCart(product)}
                       >
                         Add to Cart
                       </button>

@@ -1,9 +1,5 @@
-import {
-  createSlice,
-  CreateSliceOptions,
-  PayloadAction,
-  SliceCaseReducers,
-} from "@reduxjs/toolkit";
+import { createSlice, SliceCaseReducers } from "@reduxjs/toolkit";
+import { productInfo } from "../common/types";
 
 export type CartState = {
   value: {
@@ -16,7 +12,7 @@ export type CartState = {
       image: string;
       category: string;
       quantity: number;
-    };
+    } & productInfo;
     quantity: number;
   }[];
 };
@@ -38,9 +34,22 @@ const cartSlice = createSlice<CartState, SliceCaseReducers<CartState>>({
         state.value.push(action.payload);
       }
     },
+    removeFromCart(state, action) {
+      const { product } = action.payload;
+      const index = state.value.findIndex(
+        ({ product: item }) => item.id === product.id
+      );
+      if (index !== -1) {
+        const existingProd = state.value[index];
+        if (existingProd.quantity === 1) {
+          state.value.splice(index, 1);
+        } else {
+          existingProd.quantity -= 1;
+        }
+      }
+    },
   },
 });
 
-export const { addToCart, increaseQuantity, decreaseQuantity, removeFromCart } =
-  cartSlice.actions;
+export const { addToCart, removeFromCart } = cartSlice.actions;
 export default cartSlice.reducer;

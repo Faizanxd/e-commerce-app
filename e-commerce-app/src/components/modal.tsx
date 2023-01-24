@@ -61,30 +61,36 @@ export default function Modal({
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-dark p-6 text-left align-middle shadow-xl transition-all">
                   <Dialog.Title
                     as="h3"
-                    className="text-lg font-medium leading-6 text-gray-900"
+                    className="text-lg font-medium leading-6 text-white"
                   >
                     {title}
                   </Dialog.Title>
                   <div className="mt-2">
-                    <p className="text-sm text-gray-500">{category}</p>
+                    <p className="text-sm text-gray-300">{category}</p>
                   </div>
-                  <div className="mt-2">
-                    <img src={image} alt={title} />
+                  <div className="mt-2 h-[350px] w-[350px] ">
+                    <img
+                      src={image}
+                      alt={title}
+                      className="ml-6 h-full w-full rounded-md object-contain"
+                    />
                   </div>
                   <div>
-                    <p className="text-lg font-bold text-black">{price}$</p>
+                    <p className="pt-2 text-xl font-bold text-white">
+                      {price}$
+                    </p>
                   </div>
                   <div className="mt-2">
-                    <p className="text-sm text-gray-500 ">{description}</p>
+                    <p className="text-sm text-gray-200 ">{description}</p>
                   </div>
 
                   <div className="mt-4">
                     <button
                       type="button"
-                      className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                      className="inline-flex justify-center rounded-md border border-transparent bg-gray-100 px-4 py-2 text-sm font-medium text-black hover:bg-indigo-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                       onClick={closeModal}
                     >
                       Close

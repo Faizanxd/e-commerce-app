@@ -16,6 +16,7 @@ import Login from "./pages/signIn";
 import SignUp from "./pages/signUp";
 import { Provider } from "react-redux";
 import { store } from "./store";
+import Checkout from "./pages/checkout";
 
 function ProtectedRoute({ children }: { children: React.ReactElement }) {
   const { user, loading } = useAuth();
@@ -57,6 +58,9 @@ function AppRouter() {
           </Route>
           <Route path="/cart" element={<Layout />}>
             <Route index element={<Cart />} />
+          </Route>
+          <Route path="/checkout" element={<Layout />}>
+            <Route index element={<Checkout />} />
           </Route>
         </Route>
         <Route path="/login" element={<Login />} />

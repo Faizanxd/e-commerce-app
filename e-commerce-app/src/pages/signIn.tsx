@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { useAuth } from "../common/auth";
 
@@ -18,6 +18,10 @@ export default function Login() {
       email: HTMLInputElement;
       password: HTMLInputElement;
     };
+
+    if (password.value.length < 8) {
+      alert("Password must be greater than 8 characters");
+    }
 
     event.preventDefault();
     await signIn(email.value, password.value);
