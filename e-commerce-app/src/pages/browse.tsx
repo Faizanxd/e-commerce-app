@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -92,7 +92,9 @@ export default function Browse() {
                     <div className="">
                       <button
                         className="ml-auto flex rounded border-0 bg-indigo-500 py-2 px-6 text-white hover:bg-indigo-600 focus:outline-none"
-                        onClick={() => addProductToCart(product)}
+                        onClick={() =>
+                          addProductToCart(product as unknown as productInfo)
+                        }
                       >
                         Add to Cart
                       </button>

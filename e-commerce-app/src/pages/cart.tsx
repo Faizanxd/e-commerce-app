@@ -1,6 +1,9 @@
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+
+import { productInfo } from "../common/types";
+
 import { addToCart, removeFromCart } from "../redux/cart-slice";
 import { RootState } from "../store";
 
@@ -16,8 +19,11 @@ export default function Cart() {
   const total = getTotal();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  function handleQuantityChange(e, { product, quantity }) {
-    const { value } = e.target;
+  function handleQuantityChange(
+    e: React.ChangeEvent<HTMLInputElement>,
+    { product, quantity }: { product: productInfo; quantity: number }
+  ) {
+    const value = parseInt(e.currentTarget.value);
     if (value < quantity) {
       dispatch(removeFromCart({ product }));
     }

@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../common/auth";
+
 import { RootState } from "../store";
 import { getItemsCount } from "../utils";
 
@@ -12,7 +13,7 @@ export default function Header() {
     navigate("/login");
   }
   const cartItems = useSelector((state: RootState) => state.cart?.value);
-  const count = getItemsCount(cartItems);
+  const count = getItemsCount(cartItems as []);
   const countIf = count > 0 ? count : null;
 
   return (
