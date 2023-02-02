@@ -132,3 +132,20 @@ export default function Cart() {
     </div>
   );
 }
+function saveCartStateToUser(
+  cart: {
+    product: {
+      title: string;
+      rating: any;
+      id: number;
+      name: string;
+      price: number;
+      image: string;
+      category: string;
+      quantity: number;
+    } & productInfo;
+    quantity: number;
+  }[]
+): any {
+  throw new Error("Function not implemented.");
+}

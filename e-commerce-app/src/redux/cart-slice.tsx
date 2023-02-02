@@ -48,6 +48,11 @@ const cartSlice = createSlice<CartState, SliceCaseReducers<CartState>>({
         }
       }
     },
+    saveCartStateToUser(state, action) {
+      const { user } = action.payload;
+      const cart = state.value;
+      localStorage.setItem(user, JSON.stringify(cart));
+    },
   },
 });
 

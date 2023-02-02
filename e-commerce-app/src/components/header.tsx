@@ -17,7 +17,7 @@ export default function Header() {
   const countIf = count > 0 ? count : null;
 
   return (
-    <header className="body-font text-white">
+    <header className="body-font  text-white">
       <div className=" mx-auto flex flex-col flex-wrap items-center justify-between p-5 md:flex-row">
         <Link to={"/"}>
           <a className="title-font mb-4 flex items-center font-medium text-white md:mb-0">
@@ -36,7 +36,7 @@ export default function Header() {
               />
             </svg>
 
-            <span className="ml-3 text-xl">amazon but i'm retarded</span>
+            <span className="ml-3 text-2xl font-extrabold ">.shop</span>
           </a>
         </Link>
 

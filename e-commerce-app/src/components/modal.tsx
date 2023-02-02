@@ -75,7 +75,7 @@ export default function Modal({
                     <img
                       src={image}
                       alt={title}
-                      className="ml-6 h-full w-full rounded-md object-contain"
+                      className="ml-6 h-full w-full rounded-md object-contain hover:object-fill"
                     />
                   </div>
                   <div>
